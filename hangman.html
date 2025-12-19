@@ -2,78 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hangman (Python in the Browser)</title>
+  <title>Hangman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Base + layout styles -->
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-
-  <!-- Page-specific styles -->
-  <link rel="stylesheet" href="css/pages/hangman.css">
+  <!-- Your existing site styles -->
+  <link rel="stylesheet" href="css/format.css">
 </head>
 
 <body>
 
-  <!-- ================= HEADER / NAV ================= -->
-  <header class="site-header">
-    <!-- 
-      You mentioned earlier that your nav is a div with class="links".
-      We’ll keep that pattern for now to avoid breaking other pages.
-    -->
-    <div class="links">
-      <a href="index.html">Home</a>
-      <a href="foundation.html">Foundation</a>
-      <a href="remember.html">Remember</a>
-      <a href="hangman.html" class="is-active">Hangman</a>
+<!-- ================= HEADER / NAV ================= -->
+<header>
+  <nav class="navbar">
+        <div class="links">
+        <a href="index.html">
+            <img class="icon" src="assets/icons/home.svg">
+            <img class="icon2" src="assets/icons/homelight.svg">
+            <p class="text">Home</p>
+        </a>
     </div>
-  </header>
+    <div class="links">
+      <a href="inspiration.html">
+        <img class="icon" src="assets/icons/inspiration.svg">
+        <img class="icon2" src="assets/icons/inspirationlight.svg">
+        <p class="text">Inspiration</p>
+      </a>
+    </div>
 
-  <!-- ================= MAIN CONTENT ================= -->
-  <main class="page-hangman">
+    <div class="links">
+      <a href="foundation.html">
+        <img class="icon" src="assets/icons/foundation.svg">
+        <img class="icon2" src="assets/icons/foundationlight.svg">
+        <p class="text">Foundation</p>
+      </a>
+    </div>
 
-    <!-- Intro / description -->
-    <section class="page-intro">
-      <h1>Hangman</h1>
-      <p>
-        This is a Hangman game written in Python and executed directly in the browser.
-        The game logic is Python-based, adapted from a terminal version.
-      </p>
-    </section>
+    <div class="links">
+      <a href="remember.html">
+        <img class="icon" src="assets/icons/Remember.svg">
+        <img class="icon2" src="assets/icons/Rememberlight.svg">
+        <p class="text">Remember</p>
+      </a>
+    </div>
+  </nav>
+</header>
 
-    <!-- Game container -->
-    <section class="hangman-game">
+<!-- ================= MAIN ================= -->
+<main class="page-hangman">
 
-      <!-- Game output -->
-      <div class="hangman-display">
-        <!-- Python output will be rendered here -->
-        <p class="word-display">_ _ _ _ _</p>
-        <p class="status-message">Guess a letter to begin.</p>
-        <p class="lives-remaining">Lives: 6</p>
+  <section class="textbox">
+    <h1 class="titles">Hangman</h1>
+    <p class="text">
+      A browser-based Hangman game ported from a Python CLI version.
+    </p>
+  </section>
+
+<section id="intro" class="textbox">
+  <h1 class="titles">Welcome to Hangman (Mini)!</h1>
+
+  <label class="text" for="playerName">What’s your name?</label>
+  <input type="text" id="playerName" autocomplete="off">
+
+  <button id="startBtn">Continue</button>
+</section>
+
+<section id="phrasePrompt" class="textbox" style="display:none; min-width: 65ch;" >
+  <p id="welcomeMessage" class="text"></p>
+
+  <pre id="frankensteinBanner" class="text"></pre>
+
+  <div class="control">
+    <button id="phraseYes">Yes</button>
+    <button id="phraseNo">No</button>
+  </div>
+</section>
+
+<section id="game" class="hangman-game" style="display:none;">
+
+    <!-- ===== LEFT PANEL: GAME DISPLAY ===== -->
+    <div class="textbox">
+      <pre id="gallows" class="text"></pre>
+
+      <p id="word" class="text">_ _ _ _ _</p>
+
+      <p id="misses" class="text">Misses: (none)</p>
+      <p id="tries" class="text">Tries left: 6</p>
+      <p id="hints" class="text">Hints left: 0</p>
+
+      <p id="message" class="text">Guess a letter to begin.</p>
+    </div>
+
+    <!-- ===== RIGHT PANEL: CONTROLS ===== -->
+    <div class="panel">
+
+      <div class="control">
+        <label class="text">
+          <input type="checkbox" id="phraseMode">
+          Phrase mode
+        </label>
       </div>
 
-      <!-- User input -->
-      <div class="hangman-controls">
-        <label for="guess-input">Enter a letter:</label>
+      <div class="control">
+        <label class="text" for="difficulty">Difficulty:</label>
+        <select id="difficulty">
+          <option value="e">Easy</option>
+          <option value="m">Medium</option>
+          <option value="h">Hard</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label for="guessInput" class="text">Enter a letter:</label>
         <input
           type="text"
-          id="guess-input"
+          id="guessInput"
           maxlength="1"
           autocomplete="off"
         >
-        <button id="guess-button">Guess</button>
       </div>
 
-    </section>
+      <div class="control">
+        <button id="guessBtn">Guess</button>
+        <button id="newGameBtn">New Game</button>
+      </div>
 
-  </main>
+    </div>
+  </section>
+</main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="site-footer">
-    <p>© Your Name</p>
-  </footer>
+<!-- ================= SCRIPT ================= -->
+<script type="module" src="assets/js/hangman.js"></script>
 
-  <!-- JavaScript (added later) -->
-  <script src="js/hangman.js"></script>
 </body>
 </html>
